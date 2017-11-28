@@ -1,12 +1,11 @@
 <template>
   <div>
-    hi
+    ahhh
   </div>
 </template>
 
-<<script>
+><script>
 export default {
 
 }
 </script>
-
