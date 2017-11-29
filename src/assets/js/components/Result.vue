@@ -1,11 +1,10 @@
 <template>
   <div>
-    ahhh
+    {{this.form}}
   </div>
 </template>
 
 ><script>
 export default {
-
 }
 </script>
