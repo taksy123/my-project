@@ -1,37 +1,42 @@
 <template>
   <div>
-  <span> 生徒</span><br>
-    <div>
-      名前
-      <input class="input" v-model="form.name" placeholder="名前"><br>
-      学校名
-      <input class="input" v-model="form.school" placeholder="学校"><br>
-      <button @click="createForm">フォームを作る</button>
-    </div>
-    <hr>
-    <div>
-      名前: {{finalform.name}}<br>
-      学校: {{finalform.school}}<br>
-    </div>
+    <h2>Create a New Form</h2>
+    <form>
+      <div>
+          <label>名前</label>
+          <input type="text" v-model="input" placeholder="名前" @keyup.enter="add()">
+      </div>
+      <button type="button" @click="add()">Create</button>
+    </form>
+    <h2>Form List</h2>
+    <ul>
+        <li v-for="(form, index) in forms" :key="index">
+            {{ index }}: {{ form }}
+          <button @click="deleteItem(form)">削除</button><br>
+        </li>
+    </ul>
+    <router-link :to="{ path: '/result', params: {forms}}">送信する</router-link>
   </div>
 </template>
 
 <script>
-export default {
-  data: function(){
-    return{
-      finalform:"",
-      form: [
-        {name: '', school:''}
-      ]
-    }
-  },
-  methods: {
-    createForm(){
-      this.finalform = this.form
-    }
+  export default {
+      data () {
+          return {
+              forms: [],
+              input: ""
+          }
+      },
+      methods: {
+          add() {
+              this.forms.push(this.input);
+              this.input = "";
+          },
+          deleteItem(){
+            this.forms.splice(this.index, 1)
+          }
+      }
   }
-}
 </script>
 
 <style lang="scss">
